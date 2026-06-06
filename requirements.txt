@@ -1,0 +1,28 @@
+# LangChain ecosystem
+langchain==1.3.4
+langchain-core==1.4.0
+langchain-community==0.4.2
+langchain-groq==1.1.2
+langchain-openai==1.2.2
+langgraph==1.2.4
+langsmith==0.8.9
+
+# LLM provider SDKs
+openai==2.41.0
+groq==0.37.1
+
+# Document loading / parsing
+pypdf==6.12.2
+pymupdf==1.27.2.3
+beautifulsoup4==4.14.3
+
+# Embeddings / vector stores
+sentence-transformers==5.5.1
+faiss-cpu==1.14.2
+chromadb==1.5.9
+typesense==2.0.0
+
+# Config / settings
+pydantic==2.13.4
+pydantic-settings==2.14.1
+python-dotenv==1.2.2
