@@ -1,3 +1,13 @@
+# Evaluators or Metrics
+# Correctness: Response vs reference answer
+# Goal: Measure "how similar/correct is the RAG chain answer, relative to a ground-truth answer"
+# Mode: Requires a ground truth (reference) answer supplied through a dataset
+# Evaluator: Use LLM-as-judge to assess answer correctness.
+# This evaluator checks if the RAG answer is factually accurate compared to the ground truth:
+#A key design pattern here is the use of with_structured_output(). 
+# By forcing the LLM to produce a typed output (boolean correct field plus an explanation),
+#  we get reliable, parseable evaluation results. The explanation field is also valuable — it forces the model
+#  to reason through its assessment before providing a score, which improves judgment quality.
 from langchain_openai import ChatOpenAI
 from correctnessgrade import CorrectnessGrade
 

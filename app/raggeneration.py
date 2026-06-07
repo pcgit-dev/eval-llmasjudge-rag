@@ -1,3 +1,10 @@
+
+##First, we set up a complete RAG system using LangChain. We’ll index content from Lilian
+##Weng’s blog posts about LLM agents, prompt engineering, and adversarial attacks:
+#Key decisions here: we’re using a chunk size of 250 tokens with no overlap, 
+# OpenAI embeddings for the vector store, and retrieving the top 6 most relevant chunks 
+# per query.
+
 from langchain_community.document_loaders import WebBaseLoader
 from langchain_core.vectorstores import InMemoryVectorStore
 from langchain_openai import OpenAIEmbeddings
@@ -41,7 +48,8 @@ class raggeneration:
     def invoke_retriever(self, query: str):
         return self.retriever.invoke(query)
     
-    ## Add decorator
+    ## The RAG bot retrieves relevant documents, injects them into the system prompt, 
+    # and generates an answer. The @traceable() decorator from LangSmith ensures every step is logged:
     @traceable()
     def rag_bot(self,question:str)->dict:
         ## Relevant context

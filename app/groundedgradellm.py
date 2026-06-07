@@ -1,3 +1,7 @@
+#This evaluator checks if the RAG answer is factually accurate compared to the ground truth:
+#Another useful way to evaluate responses without needing reference answers is to check if
+#the response is justified by (or "grounded in") the retrieved documents.
+#This is the hallucination detector. It checks whether the answer is supported by the retrieved documents:
 from langchain_openai import ChatOpenAI
 from groundedgrade import GroundedGrade
 
@@ -21,7 +25,11 @@ class GroundedGradeEvaluator:
             # Grader LLM
         self.grounded_llm = ChatOpenAI(model="gpt-4o", temperature=0).with_structured_output(GroundedGrade, method="json_schema", strict=True)
 
-    # Evaluator
+    # A key design pattern here is the use of with_structured_output(). By forcing the LLM 
+    # to produce a typed output (boolean correct field plus an explanation), we get reliable,
+    #  parseable evaluation results. The explanation field is also valuable — it forces the
+    #  model to reason through its assessment before providing a score, which improves 
+    # judgment quality.
     def groundedness(self, inputs: dict, outputs: dict) -> bool:
         """A simple evaluator for RAG answer groundedness."""
         doc_string = "\n\n".join(doc.page_content for doc in outputs["documents"])

@@ -23,7 +23,8 @@ class dataingetion:
         self.logger.info("GROQ_API_KEY      : %s", self._mask(s.groq_api_key))
         self.logger.info("LANGSMITH_API_KEY : %s", self._mask(s.langsmith_api_key))
         self.logger.info("LANGSMITH_PROJECT : %s", s.langsmith_project)
-
+    #The RAG dataset contains more complex, domain-specific questions 
+    # with detailed reference answers:
     def prepare_rag_evaldata(self):
       # Define the examples for the dataset
         examples = [

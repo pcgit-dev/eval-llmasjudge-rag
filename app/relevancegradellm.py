@@ -1,5 +1,10 @@
-from langchain_openai import ChatOpenAI
+#This evaluator checks if the answer addresses the user’s question, without needing a ground 
+# truth reference answer.
+# we simply look at the inputs and outputs without needing the reference_outputs. 
+# Without a reference answer we can't grade accuracy, but can still grade relevance—as in, 
+# did the model address the user's question or not.
 
+from langchain_openai import ChatOpenAI
 from relevancegrade import RelevanceGrade
 
 class RelevanceGradeEvaluator:
